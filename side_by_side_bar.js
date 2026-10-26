@@ -80,13 +80,15 @@ function initChart(csvText, leftContainerId = "left-chart", rightContainerId = "
       text: "Projected Openings",
     },
     xAxis: {
+      categories: categories,
       title: {
         text: "Industry",
       },
       labels: {
-        formatter() {
-          return categories[this.value] || this.value;
-        },
+        // formatter() {
+        //   return categories[this.value] || this.value;
+        // },
+        step: 1,
       },
     },
     yAxis: {
@@ -116,7 +118,7 @@ function initChart(csvText, leftContainerId = "left-chart", rightContainerId = "
     tooltip: {
       shared: false,
       formatter() {
-        const categoryName = categories[this.key];
+        const categoryName = this.key;
         return `<b>${this.series.name}</b><br><b>${categoryName}: </b>`+Highcharts.numberFormat(this.y, 0, '.', ',');
       },
     },
@@ -129,7 +131,7 @@ function initChart(csvText, leftContainerId = "left-chart", rightContainerId = "
           enabled: true,
           align: 'left',
           formatter: function() {
-            const label = labels[this.key];
+            const label = labels[this.x];
             return '<b>' + label + '%</b>';
           }
         }
