@@ -1,0 +1,19 @@
+<!-- Container for the two side-by-side horizontal bar charts -->
+<div id="chart-container" style="display:flex; gap:24px; width:100%; min-height:600px;">
+  <div id="left-chart" style="flex:1.5; min-height:500px;"></div>
+  <div id="right-chart" style="flex:1; min-height:500px;"></div>
+</div>
+
+<!-- Highcharts -->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<!-- Your script -->
+<script src="side_by_side_bar.js?v=2026-10-22-3"></script>
+<script>
+  const cacheBust = new Date().getTime();
+  fetch("data_53.csv?cacheBust=" + cacheBust)
+    .then((r) => r.text())
+    .then((csv) => initChart(csv, "left-chart", "right-chart"))
+    .catch((err) => console.error("Failed to load CSV:", err));
+</script>
