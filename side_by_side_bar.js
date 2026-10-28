@@ -199,10 +199,10 @@ function initChart(csvText, leftContainerId = "left-chart", rightContainerId = "
           enabled: true,
           align: 'center',
           inside: true,
-          color: '#fff',
+          color: '#000000',
           formatter: function() {
             const wage = wages[this.key];
-            return '<b>$' + wage + '</b>';
+            return '<b>$' + Highcharts.numberFormat(wage, 0, '.', ',') + '</b>';
           }
         }
       },
